@@ -1,25 +1,32 @@
-import Box from "@/Components/Box";
+import { action } from "@/action/action";
 import Form from "@/Components/form";
-import Image from "next/image";
-
 export default async function Home() {
+  let todosApi = await fetch("http://localhost:3000/api/todo", {
+    next: { revalidate: 0 }, // This ensures no caching (no static generation)
+    cache: "no-store", // Prevents any caching of the response
+  });
+  todosApi = await todosApi.json();
 
-  let fetchData = await fetch("http://localhost:3000/api/todo")
-
-  fetchData = await fetchData.json()
-  console.log(fetchData);
-
+  console.log(todosApi);
+  
   return (
-    <section>
-      <h1 className="text-center text-4xl font-normal mt-[80px]">To Do Application Next JS</h1>
-      <Form />
-      {
-        fetchData.length > 0 ?
-        fetchData.map((todo) => (
-          <Box todo={todo.todo} />
-        ))
-        : null
-      }
-    </section>
+    <div>
+    <h1 className="text-3xl text-center mt-[80px] font-bold">Todo Application NextJS</h1>
+     <Form />
+      <div className="flex justify-center flex-col items-center gap-3">
+        {Array.isArray(todosApi) && todosApi.length > 0 ? (
+          todosApi.map((data) => (
+            <div
+              className="flex justify-center items-center p-3 border border-black w-1/3"
+              key={data.id}
+            >
+              {data.todo}
+            </div>
+          ))
+        ) : (
+          <p>No todos available</p> // Optional: you can show a fallback message here
+        )}
+      </div>
+    </div>
   );
 }

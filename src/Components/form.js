@@ -1,12 +1,13 @@
+import { action } from '@/action/action'
 import React from 'react'
 
-const Form = () => {
+const ToDoForm = () => {
   return (
-    <div className='flex justify-center items-center flex-wrap container px-7 py-5 gap-3'>
-       <input type="text" placeholder='Enter A To Do' className='border border-black w-[60%] placeholder:pl-4 pl-4  h-[47px] placeholder:font-bold'/>
+    <form action={action}  className='flex justify-center items-center flex-wrap container px-7 py-5 gap-3'>
+       <input type="text" name='todo'  placeholder='Enter A To Do' className='border border-black w-[60%] placeholder:pl-4 pl-4  h-[47px] placeholder:font-bold'/>
        <button className='border border-black px-4 py-3'>Add To Do</button>
-    </div>
+    </form>
   )
 }
 
-export default Form
+export default ToDoForm
