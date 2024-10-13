@@ -42,3 +42,9 @@ export async function DELETE(request) {
   data.splice(userTodoInd, 1);
   return Response.json(data);
 }
+
+
+export async function PUT(request) {
+    let editValue = await request.json()
+    let userTodoInd = data.findIndex((todo) => todo.id == editValue.id)
+}

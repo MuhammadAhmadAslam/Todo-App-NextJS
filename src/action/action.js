@@ -27,3 +27,19 @@ export async function deleteToDoAction(id){
             console.log(e);
         }
 }
+
+
+export async function editToDoAction(todo){
+    try{
+        let fetchToDo = fetch("http://localhost:3000/api/todo" , {
+              method: "PUT",
+              body: JSON.stringify({todo})
+        })
+        console.log("reuest chali gaye");       
+        revalidatePath("/")
+    }catch(e){
+        console.log(e)
+    }
+}
+
+
