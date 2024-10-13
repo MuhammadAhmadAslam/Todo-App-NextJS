@@ -18,15 +18,27 @@ let data = [
 ];
 
 export async function GET() {
-  return Response.json( data );
+  return Response.json(data);
 }
 
-export async function POST(request){
-       let newTodo = await request.json();
-       let obj = {
-         ...newTodo,
-         id: Todos.length + 1,
-       };
-       Todos.push(obj)
-       return Response.json(Todos);
+
+
+export async function POST(request) {
+  let newTodo = await request.json();
+  let obj = {
+    ...newTodo,
+    id: data.length + 1,
+  };
+  data.push(obj);
+  return Response.json(data);
+}
+
+
+
+
+export async function DELETE(request) {
+  let deleteId = await request.json();
+  let userTodoInd = data.findIndex((todo) => todo.id == deleteId.id)
+  data.splice(userTodoInd, 1);
+  return Response.json(data);
 }

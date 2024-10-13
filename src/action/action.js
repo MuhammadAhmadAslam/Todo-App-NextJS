@@ -2,16 +2,28 @@
 
 import { revalidatePath } from "next/cache";
 
-export async function action(formData) {
-  let todoText = formData.get("todo");
+export async function action(todo) {
   try {
     let fetchingTodo = await fetch("http://localhost:3000/api/todo", {
       method: "POST",
-      body: JSON.stringify({ todoText }),
+      body: JSON.stringify({ todo }),
     });
     revalidatePath("/");
   } catch (error) {
     console.log(error);
   }
-  // console.log('todos' , Todos)
+}
+
+
+export async function deleteToDoAction(id){
+        try{
+          let fetchToDo = fetch("http://localhost:3000/api/todo" , {
+              method: "DELETE",
+              body: JSON.stringify({ id })
+          })
+          console.log("delete request chali gaye hae");
+          revalidatePath("/")
+        }catch(e){
+            console.log(e);
+        }
 }
