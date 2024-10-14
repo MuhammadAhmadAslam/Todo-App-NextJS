@@ -21,8 +21,6 @@ export async function GET() {
   return Response.json(data);
 }
 
-
-
 export async function POST(request) {
   let newTodo = await request.json();
   let obj = {
@@ -33,18 +31,30 @@ export async function POST(request) {
   return Response.json(data);
 }
 
-
-
-
 export async function DELETE(request) {
   let deleteId = await request.json();
-  let userTodoInd = data.findIndex((todo) => todo.id == deleteId.id)
+  let userTodoInd = data.findIndex((todo) => todo.id == deleteId.id);
   data.splice(userTodoInd, 1);
   return Response.json(data);
 }
 
+// export async function PUT(request) {
+  //   let editValue = await request.json()
+  //   let userTodoInd = data.findIndex((todo) => todo.id == editValue.id);
+  //   data[userTodoInd].todo = editValue.value
+  //   console.log(data , "put function sae data");
+    
+  //   return Response.json(data)
+  // }
+  
 
-export async function PUT(request) {
-    let editValue = await request.json()
-    let userTodoInd = data.findIndex((todo) => todo.id == editValue.id)
-}
+
+  export async function PUT(request) {
+    let editData = request.json()
+    console.log(await editData , "yae reuest aye frontend sae");
+    return Response.json(data)
+  }
+  
+
+
+

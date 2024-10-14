@@ -31,11 +31,12 @@ export async function deleteToDoAction(id){
 
 export async function editToDoAction(todo){
     try{
+      console.log(todo , "yae action wla todo");
         let fetchToDo = fetch("http://localhost:3000/api/todo" , {
               method: "PUT",
               body: JSON.stringify({todo})
         })
-        console.log("reuest chali gaye");       
+        console.log("reuest chali gaye" , JSON.stringify({todo}));       
         revalidatePath("/")
     }catch(e){
         console.log(e)
