@@ -38,23 +38,26 @@ export async function DELETE(request) {
   return Response.json(data);
 }
 
-// export async function PUT(request) {
-  //   let editValue = await request.json()
-  //   let userTodoInd = data.findIndex((todo) => todo.id == editValue.id);
-  //   data[userTodoInd].todo = editValue.value
-  //   console.log(data , "put function sae data");
-    
-  //   return Response.json(data)
-  // }
-  
-
 
   export async function PUT(request) {
-    let editData = request.json()
-    console.log(await editData , "yae reuest aye frontend sae");
-    return Response.json(data)
-  }
-  
+    // Await the result of request.json()
+    let editData = await request.json(); 
+    console.log(editData.todo, "yae request aye frontend sae");
+    
+    // Find the index of the todo item to update
+    let userTodoInd = data.findIndex((todo) => todo.id == editData.id);
+    console.log(userTodoInd, "userTodoInd");
+
+    if (userTodoInd !== -1) {
+        // Update the todo item if the index is found
+        data[userTodoInd].todo = editData.todo;
+    }
+
+    console.log("yae request jae gae" , data);
+    
+
+    return Response.json(data);
+}
 
 
 

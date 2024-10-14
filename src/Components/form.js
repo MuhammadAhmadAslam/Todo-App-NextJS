@@ -7,7 +7,9 @@ const ToDoForm = () => {
   let formRef = useRef(null)
   let submitData = async (formData) => {
       let todo = formData.get("todo")
+      todo ? 
       action(todo)
+      : alert("fill kar")
       formRef?.current?.reset()
   }
 

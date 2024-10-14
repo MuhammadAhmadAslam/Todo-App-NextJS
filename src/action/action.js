@@ -17,7 +17,7 @@ export async function action(todo) {
 
 export async function deleteToDoAction(id){
         try{
-          let fetchToDo = fetch("http://localhost:3000/api/todo" , {
+          let fetchToDo = await fetch("http://localhost:3000/api/todo" , {
               method: "DELETE",
               body: JSON.stringify({ id })
           })
@@ -29,14 +29,14 @@ export async function deleteToDoAction(id){
 }
 
 
-export async function editToDoAction(todo){
+export async function editToDoAction(todo , id){
     try{
       console.log(todo , "yae action wla todo");
         let fetchToDo = fetch("http://localhost:3000/api/todo" , {
               method: "PUT",
-              body: JSON.stringify({todo})
+              body: JSON.stringify({todo , id})
         })
-        console.log("reuest chali gaye" , JSON.stringify({todo}));       
+        console.log("reuest chali gaye" , JSON.stringify({todo , id}));       
         revalidatePath("/")
     }catch(e){
         console.log(e)

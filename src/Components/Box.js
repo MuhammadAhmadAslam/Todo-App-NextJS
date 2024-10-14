@@ -29,8 +29,8 @@ const Box = ({ todo }) => {
 
     // If the "Edit" button is clicked and there's a value
     if (updatedValue) {
-      let obj = { todo: updatedValue, id }; // Create the object with updated value
-      editToDoAction(updatedValue); // Call the function to handle the edit action
+      let obj = { todo: updatedValue, id : id }; // Create the object with updated value
+      editToDoAction(updatedValue , id); // Call the function to handle the edit action
     }
   };
 

@@ -1,4 +1,4 @@
-import { action } from "@/action/action";
+
 import Box from "@/Components/Box";
 import Form from "@/Components/form";
 export default async function Home() {
@@ -9,6 +9,7 @@ export default async function Home() {
   todosApi = await todosApi.json();
 
   console.log(todosApi);
+
   
   return (
     <div>
