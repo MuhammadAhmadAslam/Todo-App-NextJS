@@ -16,6 +16,7 @@ export async function action(todo) {
 
 
 export async function deleteToDoAction(id){
+        console.log(id , "yae id delete hoage");
         try{
           let fetchToDo = await fetch("http://localhost:3000/api/todo" , {
               method: "DELETE",
