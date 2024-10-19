@@ -9,7 +9,7 @@ import Box from "@/Components/Box";
 import ToDoForm from "@/Components/form";
 export default async function Home() {
   try {
-    let todosApi = await fetch("http://localhost:3000/api/todo" , {
+    let todosApi = await fetch("https://to-do-application-next-js-three.vercel.app/api/todo" , {
       cache: "no-cache"
     });
     if (!todosApi.ok) {
