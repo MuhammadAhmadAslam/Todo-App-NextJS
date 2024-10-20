@@ -1,10 +1,3 @@
-
-// import Box from "@/Components/Box";
-// import Form from "@/Components/form";
-// export default async function Home() {
-//   let todosApi = await fetch("http://localhost:3000/api/todo");
-//   todosApi = await todosApi.json();
-
 import Box from "@/Components/Box";
 import ToDoForm from "@/Components/form";
 export default async function Home() {
