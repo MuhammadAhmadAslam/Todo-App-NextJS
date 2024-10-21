@@ -12,3 +12,15 @@ export async function GET(request) {
          headers: { 'Content-Type': 'application/json' }
        });
      }
+
+
+     export async function POST(request) {
+       let data = await request.json();
+       data.id = Math.floor(Math.random() * 1000000000);
+       let obj = {
+              user: data.user,
+              id: data.id
+       }
+       data.push(obj);
+       return new Response(data);
+     }

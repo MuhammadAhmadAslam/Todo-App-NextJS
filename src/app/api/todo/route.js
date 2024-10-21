@@ -4,15 +4,34 @@ import { TodoModal } from "@/lib/TodoModal";
 let data = [
   {
     task: "123",
-    completed: false
-  }
+    completed: false,
+  },
 ];
 
 // GET method to fetch data
 export async function GET(request) {
-  await connectDB()
-  let todos = await TodoModal.find()
-  console.log(todos , "data base sae data agayae");
-  
+  await connectDB();
+  let todos = await TodoModal.find();
+  console.log(todos, "data base sae data agayae");
+
   return Response.json(todos);
+}
+
+export async function POST(request) {
+  try {
+    let data = await request.json();
+    console.log(data, "data to be saved in db");
+    const newTodo = new TodoModal({...data});
+    await newTodo.save();
+    return new Response(
+      JSON.stringify({ message: "Task added successfully", data }),
+      { status: 200 }
+    );
+  } catch (error) {
+    console.error("Error saving data:", error);
+    return new Response(
+      JSON.stringify({ message: "Failed to add task", error }),
+      { status: 500 }
+    );
+  }
 }

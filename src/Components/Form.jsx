@@ -1,4 +1,5 @@
 "use client"
+import { addData } from "@/actions/formActions";
 import React, { useRef } from "react";
 
 function Form() {
@@ -6,6 +7,7 @@ function Form() {
   let handleSubmit = async (event) => {
     event.preventDefault(); // Prevents the page reload
     const formData = new FormData(event.target); // Get the form data
+    addData(formData.get("todo"))
     console.log("clicked", formData.get("todo")); // Access the value of the input named 'todo'
     formRef?.current?.reset()
   };
