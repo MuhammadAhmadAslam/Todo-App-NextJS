@@ -11,7 +11,6 @@ export async function connectDB() {
     if (dbConnection.connection.readyState == 1) {
       isConnected = true;
       console.log("db connected successfully");
-      
     }
   } catch (err) {
     console.log("err=>", err);
