@@ -25,7 +25,7 @@ console.log(jsonUser);
       {/* Pass the fetched data to TodoList component */}
       {
         jsonDataTodo && jsonDataTodo.length > 0 ? (
-          <TodoList todo={jsonDataTodo} />
+          <TodoList todo={jsonDataTodo} jsonUser={jsonUser}/>
         ) : (
           <p>Loading</p>
         )
