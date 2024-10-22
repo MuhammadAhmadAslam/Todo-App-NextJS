@@ -21,7 +21,7 @@ console.log(jsonUser);
   return (
     <section className="flex flex-col justify-center items-center min-h-screen">
       <h1 className="font-bold text-3xl">Todo App</h1>
-      <Form />
+      <Form allUsers={jsonUser}/>
       {/* Pass the fetched data to TodoList component */}
       {
         jsonDataTodo && jsonDataTodo.length > 0 ? (

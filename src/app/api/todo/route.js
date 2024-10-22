@@ -11,9 +11,7 @@ let data = [
 // GET method to fetch data
 export async function GET(request) {
   await connectDB();
-  let todos = await TodoModal.find();
-  console.log(todos, "data base sae data agayae");
-
+  let todos = await TodoModal.find().populate("user", "email");
   return Response.json(todos);
 }
 
