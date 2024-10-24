@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { deleteData, updateData } from "@/actions/formActions";
 import { DeleteIcon, PenIcon } from "lucide-react";
 import React, { useEffect, useState } from "react";
@@ -39,7 +39,12 @@ async function TodoList({ todo, jsonUser }) {
         // ...
 
         // Update the todo in the database
-       updateData(id, { todo: todoInput, user: user });
+        let obj = {
+          todo: todoInput,
+          user: user,
+          _id: id,
+        };
+        updateData(obj);
       },
     }).then((result) => {
       if (result.isConfirmed) {
@@ -64,7 +69,12 @@ async function TodoList({ todo, jsonUser }) {
           <article className="flex justify-center items-center gap-4">
             <PenIcon
               onClick={() =>
-                updateTodo(item._id, item.todo, item.user.userName, item.user._id)
+                updateTodo(
+                  item._id,
+                  item.todo,
+                  item.user.userName,
+                  item.user._id
+                )
               }
             />
             <DeleteIcon onClick={() => deleteTodo(item._id)} />

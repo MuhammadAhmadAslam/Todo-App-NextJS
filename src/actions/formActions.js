@@ -38,17 +38,11 @@ export async function deleteData(id){
        revalidatePath("/")    
 }
 
-export async function updateData(id, data){
-       console.log(id , "id to be updated" , data , "data to be updated");
-       let obj = {
-              todo: data.todo,
-              user: data.userId,
-              _id: id
-       }
-       console.log(obj, "data to be sent for update"  );
+export async function updateData(obj){
+       console.log("data to be sent from form action to put reqeust", obj);
        
        let updatingData = fetch(`http://localhost:3000/api/todo`, {
               method: 'PUT',
-              body: JSON.stringify({obj})
+              body: JSON.stringify(obj)
        })
 }

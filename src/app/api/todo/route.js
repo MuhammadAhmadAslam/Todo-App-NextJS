@@ -49,5 +49,9 @@ export async function DELETE(request) {
 export async function PUT(request) {
   let data = await request.json();
   console.log("data from put request" , data);
-  // const todo = await 
+  const todo = await TodoModal.updateOne({_id: data._id}, {...data});
+  return Response.json({
+    todo,
+    msg: "Todos Updated Successfully",
+  });
 }

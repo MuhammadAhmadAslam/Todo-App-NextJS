@@ -1,10 +1,12 @@
-const mongoose = require("mongoose");
+import mongoose, { Schema } from "mongoose";
 
-let UserSchema = new mongoose.Schema({
-  userName: { type: String, unique: true },
+const userSchema = new Schema({
+  fullname: String,
   email: { type: String, unique: true },
 });
 
-// Check if the model already exists, and use it if it does, otherwise create a new one
+if (mongoose.models.Users) {
+  mongoose.models.Users.schema = userSchema;
+}
 export const UserModel =
-  mongoose.models.Users || mongoose.model("Users", UserSchema);
+  mongoose.models.Users || mongoose.model("Users", userSchema);
