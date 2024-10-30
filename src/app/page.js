@@ -4,13 +4,13 @@ import TodoList from "@/Components/TodoList";
 // Server Component
 export default async function Home() {
   // Fetching todo data
-  let fetchData = await fetch("https://to-do-application-next-js-three.vercel.app/api/todo", {
+  let fetchData = await fetch(`${process.env.BASE_URL}`, {
     cache: "no-cache",
   });
   let jsonDataTodo = await fetchData.json();
 
   // Fetching user data (if needed)
-  let fetchUser = await fetch("https://to-do-application-next-js-three.vercel.app/api/user", {
+  let fetchUser = await fetch(`${process.env.BASE_URL_2}`, {
     cache: "no-cache",
   });
   let jsonUser = await fetchUser.json();
