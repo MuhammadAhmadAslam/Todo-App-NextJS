@@ -88,7 +88,7 @@ export async function updateData(obj) {
   }
 }
 
-//checking the redeployment
+
 
 export async function getData() {
   let data = await fetch(`${process.env.BASE_URL}/api/todo`, {
