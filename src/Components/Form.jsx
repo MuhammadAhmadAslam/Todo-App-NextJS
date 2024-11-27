@@ -61,17 +61,17 @@ import React, { useRef, useState } from "react";
 
 function Form({ allUsers }) {
   // Set the default value to the first user in the allUsers array
-  let [selectedUser, setSelectedUser] = useState(allUsers[0]?._id);
+  // let [selectedUser, setSelectedUser] = useState(allUsers[0]?._id);
   let formRef = useRef(null);
-  console.log(selectedUser , "selectedUser");
+  // console.log(selectedUser , "selectedUser");
   
 
   let handleSubmit = async (event) => {
     event.preventDefault(); // Prevents the page reload
     const formData = new FormData(event.target); // Get the form data
-    console.log({ userId: formData.get("gettingUser"), todo: formData.get("todo") });
-    addData({ userId: selectedUser, todo: formData.get("todo") });
-    console.log("clicked", formData.get("todo"), selectedUser); // Access the value of the input named 'todo'
+    console.log({todo: formData.get("todo") });
+    addData({ todo: formData.get("todo") });
+    console.log("clicked", formData.get("todo")); // Access the value of the input named 'todo'
     formRef?.current?.reset();
   };
 
@@ -88,19 +88,18 @@ function Form({ allUsers }) {
           name="todo"
           className="border border-black h-[40px] p-3 md:w-[50%]"
         />
-        <select
+        {/* <select
           name="gettingUser"
           className="px-3 py-3"
           value={selectedUser}
           onChange={(event) => setSelectedUser(event.target.value)}
         >
-          {/* No need for an empty option; select the first user by default */}
           {allUsers.map((user) => (
             <option key={user._id} value={user._id}>
               {user.userName}
             </option>
           ))}
-        </select>
+        </select> */}
         <input
           type="submit"
           value={"Add Todo"}

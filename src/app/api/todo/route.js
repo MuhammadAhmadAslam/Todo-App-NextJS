@@ -1,5 +1,5 @@
 import { connectDB } from "@/lib/dbConnect"; // Assuming this is for database connection
-import { TodoModal } from "@/lib/TodoModal";
+import { TodoModel } from "@/lib/TodoModal";
 
 let data = [
   {
@@ -11,14 +11,14 @@ let data = [
 // GET method to fetch data
 export async function GET(request) {
   await connectDB();
-  let todos = await TodoModal.find().populate("user", "userName");
+  let todos = await TodoModel.find()
   return Response.json(todos);
 }
 
 export async function POST(request) {
   try {
     let data = await request.json();
-    const newTodo = new TodoModal({...data});
+    const newTodo = new TodoModel({...data});
     console.log(newTodo, "data to be saved in db");
     await newTodo.save();
     return new Response(
@@ -38,7 +38,7 @@ export async function POST(request) {
 export async function DELETE(request) {
   let data = await request.json();
   console.log("data from delete request" , data);
-  const todo = await TodoModal.deleteOne({_id: data});
+  const todo = await TodoModel.deleteOne({_id: data});
   return new Response(
     JSON.stringify({ message: "Task deleted successfully", data }),
     { status: 200 }
@@ -49,7 +49,7 @@ export async function DELETE(request) {
 export async function PUT(request) {
   let data = await request.json();
   console.log("data from put request" , data);
-  const todo = await TodoModal.updateOne({_id: data._id}, {...data});
+  const todo = await TodoModel.updateOne({_id: data._id}, {...data});
   return Response.json({
     todo,
     msg: "Todos Updated Successfully",

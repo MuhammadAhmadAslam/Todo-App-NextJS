@@ -4,7 +4,7 @@ import { DeleteIcon, PenIcon } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 
-async function TodoList({ todo, jsonUser }) {
+function TodoList({ todo, jsonUser }) {
   let deleteTodo = async (id) => {
     deleteData(id);
   };
@@ -14,24 +14,15 @@ async function TodoList({ todo, jsonUser }) {
       title: "Update Todo",
       html: `
         <input type="text" id="todoInput" class="swal2-input" placeholder="Enter a todo" value="${todo}">
-        <select id="userSelect" class="swal2-select">
-          <option value="" disabled selected>Select User</option>
-          ${jsonUser
-            .map(
-              (user) => `<option value="${user._id}">${user.userName}</option>`
-            )
-            .join("")}
-        </select>
       `,
       showCancelButton: true,
       confirmButtonText: "Update",
       preConfirm: () => {
         const todoInput = document.getElementById("todoInput").value;
-        const user = document.getElementById("userSelect").value;
 
         // Validation
-        if (!todoInput || !user) {
-          Swal.showValidationMessage("Please enter a todo and select a user");
+        if (!todoInput) {
+          Swal.showValidationMessage("Please enter a todo");
           return;
         }
 
@@ -41,7 +32,6 @@ async function TodoList({ todo, jsonUser }) {
         // Update the todo in the database
         let obj = {
           todo: todoInput,
-          user: user,
           _id: id,
         };
         updateData(obj);
@@ -62,7 +52,7 @@ async function TodoList({ todo, jsonUser }) {
         >
           <article className="flex justify-center items-center">
             <p>
-              {item.user.userName} : <span>{item.todo}</span>{" "}
+              <span>{item.todo}</span>{" "}
               {/* Display the task */}
             </p>
           </article>
@@ -72,8 +62,6 @@ async function TodoList({ todo, jsonUser }) {
                 updateTodo(
                   item._id,
                   item.todo,
-                  item.user.userName,
-                  item.user._id
                 )
               }
             />
